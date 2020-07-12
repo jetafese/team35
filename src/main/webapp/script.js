@@ -33,23 +33,20 @@ class Measure {
         dropDownDiv.classList.add("dropdown");
         dropDownDiv.id = curId + "dropDownDiv";
         this.outerDrop = dropDownDiv;
-        parentDiv.appendChild(dropDownDiv);
 
         //Create inner dropdown
         var innerDrop = document.createElement("div");
         innerDrop.classList.add("dropdown-content");
         innerDrop.id = curId + "innerDrop";
         this.innerDropMenu = innerDrop;
-        dropDownDiv.appendChild(innerDrop);
 
         //Create button
         var buttonDrop = document.createElement("BUTTON");
         buttonDrop.classList.add("dropButton");
         buttonDrop.id = curId + "buttonDrop";
-        buttonDrop.innerText = "Notes";
+        buttonDrop.innerHTML = "&equiv;";
         buttonDrop.onclick = this.showDropMenu;
         this.button = buttonDrop;
-        dropDownDiv.appendChild(buttonDrop);
 
         //Create the links
         var Piano_A = document.createElement("a");
@@ -58,24 +55,23 @@ class Measure {
         Piano_A.onclick = this.pianoA;
 
         var Piano_B = document.createElement("a");
-        Piano_B.innerText = "Two";
+        Piano_B.innerText = "Piano B";
         Piano_B.href="#";
         Piano_B.onclick = this.pianoB;
-
-        innerDrop.appendChild(Piano_A);
-        innerDrop.appendChild(Piano_B);
 
         //Create music button
         var buttonMusic = document.createElement("BUTTON");
         buttonMusic.classList.add("musicButton");
         buttonMusic.id = curId + "buttonMusic";
-        buttonMusic.innerText = "Music";
+        buttonMusic.innerText = ">";
         buttonMusic.onclick = this.playSong;
-        //buttonMusic.addEventListener('click', function(){
-        //    let newPlay = playSong.bind(songInfo);
-        //    newPlay();
-        //});
         this.buttonMusic = buttonMusic;
+
+        parentDiv.appendChild(dropDownDiv);
+        dropDownDiv.appendChild(buttonDrop);
+        dropDownDiv.appendChild(innerDrop);
+        innerDrop.appendChild(Piano_A);
+        innerDrop.appendChild(Piano_B);
         dropDownDiv.appendChild(buttonMusic);
 
     }
@@ -116,7 +112,7 @@ class Bar {
 
     //Plays the full song
     play() {
-        for(i = 0; i < this.measures.length; i++) {
+        for(var i = 0; i < this.measures.length; i++) {
             this.measures[i].playSong();
         }
     }
@@ -140,6 +136,10 @@ function newMeasure() {
     newMeasure = new Measure(newDiv, curId);
     parentGrid.appendChild(newDiv);
     bar.addMeasure(newMeasure);
+}
+
+function playAll() {
+    bar.play();
 }
 
 // Close the dropdown if the user clicks outside of it
