@@ -11,81 +11,94 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+class Note {
+    constructor(songPath) {
+        this.song = songPath;
+    }
 
-function showMenu() {
-  document.getElementById("myDropdown").classList.toggle("show");
+    play() {
+        new Audio(this.song).play();
+    }
 }
 
+
 class Measure {
-    constructor(parentDiv) {
-        //Initate song as empty
-        var initSong = "empty";
-        this.song = initSong;
-        alert(this.song);
+    constructor(parentDiv, curId) {
+        //Initate note as null
+        var curNote = null;
+        this.note = curNote;
 
         //Create big dropdown div
         var dropDownDiv = document.createElement("div");
         dropDownDiv.classList.add("dropdown");
+        dropDownDiv.id = curId + "dropDownDiv";
         this.outerDrop = dropDownDiv;
         parentDiv.appendChild(dropDownDiv);
+
+        //Create inner dropdown
+        var innerDrop = document.createElement("div");
+        innerDrop.classList.add("dropdown-content");
+        innerDrop.id = curId + "innerDrop";
+        this.innerDropMenu = innerDrop;
+        dropDownDiv.appendChild(innerDrop);
 
         //Create button
         var buttonDrop = document.createElement("BUTTON");
         buttonDrop.classList.add("dropButton");
+        buttonDrop.id = curId + "buttonDrop";
         buttonDrop.innerText = "Notes";
         buttonDrop.onclick = this.showDropMenu;
         this.button = buttonDrop;
         dropDownDiv.appendChild(buttonDrop);
 
-        //Create inner dropdown
-        var innerDrop = document.createElement("div");
-        innerDrop.classList.add("dropdown-content");
-        innerDrop.id = "myDropdown";
-        this.innerDropMenu = innerDrop;
-        dropDownDiv.appendChild(innerDrop);
-
         //Create the links
-        var aOne = document.createElement("a");
-        aOne.innerText = "One";
-        aOne.href="#";
-        aOne.onclick = this.alertOne;
+        var Piano_A = document.createElement("a");
+        Piano_A.innerText = "Piano A";
+        Piano_A.href="#";
+        Piano_A.onclick = this.pianoA;
 
-        var aTwo = document.createElement("a");
-        aTwo.innerText = "Two";
-        aTwo.href="#";
-        aTwo.onclick = this.alertTwo;
+        var Piano_B = document.createElement("a");
+        Piano_B.innerText = "Two";
+        Piano_B.href="#";
+        Piano_B.onclick = this.pianoB;
 
-        innerDrop.appendChild(aTwo);
-        innerDrop.appendChild(aOne);
+        innerDrop.appendChild(Piano_A);
+        innerDrop.appendChild(Piano_B);
 
         //Create music button
         var buttonMusic = document.createElement("BUTTON");
         buttonMusic.classList.add("musicButton");
+        buttonMusic.id = curId + "buttonMusic";
         buttonMusic.innerText = "Music";
         buttonMusic.onclick = this.playSong;
+        //buttonMusic.addEventListener('click', function(){
+        //    let newPlay = playSong.bind(songInfo);
+        //    newPlay();
+        //});
         this.buttonMusic = buttonMusic;
         dropDownDiv.appendChild(buttonMusic);
+
     }
 
-    alertTwo() {
-        var newSong = "Piano_A.wav";
+    pianoA() {
+        var newSong = new Note("Piano_A.wav");
         this.song = newSong;
-        alert(this.song);
     }
 
-    alertOne() {
-        alert(this.song);
-        var newSong = "Piano_A.wav";
+    pianoB() {
+        var newSong = new Note("Piano_A.wav");
         this.song = newSong;
     }
     showDropMenu() {
-        document.getElementById("myDropdown").classList.toggle("show");
+        document.getElementById("0_innerDrop").classList.toggle("show");
     }
 
-    //Plays the measure's note
     playSong() {
-        alert(this.song);
-        //new Audio(musicToPlay).play();
+        //if(this.song == null) {
+        //    alert("No song defined");
+        //    return;
+        //}
+        new Audio("Piano_A.wav").play();
     }
 }
 
@@ -123,7 +136,8 @@ function newMeasure() {
     var newDiv = document.createElement("div");
     newDiv.classList.add("grid-item");
 
-    newMeasure = new Measure(newDiv);
+    var curId = bar.getMeasureCount() + "_";
+    newMeasure = new Measure(newDiv, curId);
     parentGrid.appendChild(newDiv);
     bar.addMeasure(newMeasure);
 }
