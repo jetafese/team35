@@ -12,3 +12,8 @@
     margin-right: auto;
     display: block;
 }
+
+#settings {
+    display: block;
+    text-align: center;
+}
