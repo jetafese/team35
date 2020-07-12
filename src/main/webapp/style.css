@@ -5,4 +5,10 @@
   color: red;
 }
 
-
+#paint {
+    border: 3px solid black;
+    background: #cccccc;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
