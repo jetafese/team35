@@ -4,10 +4,11 @@ body {
     background-color: #12FFBF;
 }
 #grid-container {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  background-color: #12FFBF;
-  padding: 0px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 1vw;
+    background-color: #12FFBF;
+    padding: 0px;
 }
 
 .grid-item {

@@ -21,7 +21,6 @@ class Note {
     }
 }
 
-
 class Measure {
     constructor(parentDiv, curId) {
         //Initate note as null
@@ -47,7 +46,7 @@ class Measure {
         buttonDrop.classList.add("dropButton");
         buttonDrop.id = curId + "buttonDrop";
         buttonDrop.innerHTML = "&equiv;";
-        buttonDrop.onclick = this.showDropMenu;
+        buttonDrop.onclick = () => {this.showDropMenu()};
         this.button = buttonDrop;
 
         //Create the links
@@ -88,7 +87,7 @@ class Measure {
         this.note = newSong;
     }
     showDropMenu() {
-        document.getElementById("0_innerDrop").classList.toggle("show");
+        this.innerDropMenu.classList.toggle("show");
     }
 
     playSong() {
@@ -136,9 +135,9 @@ function newMeasure() {
     newDiv.classList.add("grid-item");
 
     var curId = bar.getMeasureCount() + "_";
-    newMeasure = new Measure(newDiv, curId);
+    curMeasure = new Measure(newDiv, curId);
     parentGrid.appendChild(newDiv);
-    bar.addMeasure(newMeasure);
+    bar.addMeasure(curMeasure);
 }
 
 function playAll() {
