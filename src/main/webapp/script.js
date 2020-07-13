@@ -27,6 +27,8 @@ class Measure {
         //Initate note as null
         var curNote = null;
         this.note = curNote;
+        var curSong = "hey";
+        this.song = curSong;
 
         //Create big dropdown div
         var dropDownDiv = document.createElement("div");
@@ -52,19 +54,19 @@ class Measure {
         var Piano_A = document.createElement("a");
         Piano_A.innerText = "Piano A";
         Piano_A.href="#";
-        Piano_A.onclick = this.pianoA;
+        Piano_A.onclick = () => {this.pianoA()};
 
         var Piano_B = document.createElement("a");
         Piano_B.innerText = "Piano B";
         Piano_B.href="#";
-        Piano_B.onclick = this.pianoB;
+        Piano_B.onclick = () => {this.pianoB()};
 
         //Create music button
         var buttonMusic = document.createElement("BUTTON");
         buttonMusic.classList.add("musicButton");
         buttonMusic.id = curId + "buttonMusic";
         buttonMusic.innerText = ">";
-        buttonMusic.onclick = this.playSong;
+        buttonMusic.onclick = () => {this.playSong()};
         this.buttonMusic = buttonMusic;
 
         parentDiv.appendChild(dropDownDiv);
@@ -78,23 +80,24 @@ class Measure {
 
     pianoA() {
         var newSong = new Note("Piano_A.wav");
-        this.song = newSong;
+        this.note = newSong;
     }
 
     pianoB() {
-        var newSong = new Note("Piano_A.wav");
-        this.song = newSong;
+        var newSong = new Note("Piano_B.wav");
+        this.note = newSong;
     }
     showDropMenu() {
         document.getElementById("0_innerDrop").classList.toggle("show");
     }
 
     playSong() {
-        //if(this.song == null) {
-        //    alert("No song defined");
-        //    return;
-        //}
-        new Audio("Piano_A.wav").play();
+        if(this.note == null) {
+            alert("No song defined");
+            return;
+        }
+        this.note.play();
+        //new Audio("Piano_A.wav").play();
     }
 }
 
