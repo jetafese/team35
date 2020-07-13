@@ -17,17 +17,23 @@ class Note {
     }
 
     play() {
+        if(this.song == "undefined") {
+            alert("Song undefined");
+            return;
+        }
         new Audio(this.song).play();
+    }
+
+    getName() {
+        return this.song;
     }
 }
 
 class Measure {
     constructor(parentDiv, curId) {
         //Initate note as null
-        var curNote = null;
+        var curNote = new Note("undefined");
         this.note = curNote;
-        var curSong = "hey";
-        this.song = curSong;
 
         //Create big dropdown div
         var dropDownDiv = document.createElement("div");
@@ -53,12 +59,14 @@ class Measure {
         var Piano_A = document.createElement("a");
         Piano_A.innerText = "Piano A";
         Piano_A.href="#";
-        Piano_A.onclick = () => {this.pianoA()};
+        Piano_A.onclick = () => {this.assignNote("Piano_A.wav")};
+        Piano_A.onmouseover = () => {this.hoverPlay("Piano_A.wav")};
 
         var Piano_B = document.createElement("a");
         Piano_B.innerText = "Piano B";
         Piano_B.href="#";
-        Piano_B.onclick = () => {this.pianoB()};
+        Piano_B.onclick = () => {this.assignNote("Piano_B.wav")};
+        Piano_B.onmouseover = () => {this.hoverPlay("Piano_B.wav")};
 
         //Create music button
         var buttonMusic = document.createElement("BUTTON");
@@ -68,24 +76,33 @@ class Measure {
         buttonMusic.onclick = () => {this.playSong()};
         this.buttonMusic = buttonMusic;
 
+        //Create song label
+        var songLabel = document.createElement("BUTTON");
+        songLabel.classList.add("songLabel");
+        songLabel.innerText = 'Song: ' + this.note.getName();
+        this.songNameLabel = songLabel;
+
         parentDiv.appendChild(dropDownDiv);
         dropDownDiv.appendChild(buttonDrop);
         dropDownDiv.appendChild(innerDrop);
         innerDrop.appendChild(Piano_A);
         innerDrop.appendChild(Piano_B);
         dropDownDiv.appendChild(buttonMusic);
+        dropDownDiv.appendChild(songLabel);
+        
 
     }
 
-    pianoA() {
-        var newSong = new Note("Piano_A.wav");
+    hoverPlay(songLink) {
+        new Audio(songLink).play();
+    }
+
+    assignNote(noteLink) {
+        var newSong = new Note(noteLink);
         this.note = newSong;
+        this.songNameLabel.innerText =  'Song: ' + newSong.getName();
     }
 
-    pianoB() {
-        var newSong = new Note("Piano_B.wav");
-        this.note = newSong;
-    }
     showDropMenu() {
         this.innerDropMenu.classList.toggle("show");
     }
@@ -96,35 +113,38 @@ class Measure {
             return;
         }
         this.note.play();
-        //new Audio("Piano_A.wav").play();
     }
 }
 
 class Bar {
     constructor() {
         this.measures = [];
-        this.measureCount = 0;
     }
 
     //Appends a new measure to the end of the list
     addMeasure(newMeasure) {
         this.measures.push(newMeasure);
-        this.measureCount = this.measureCount + 1;
     }
 
     //Plays the full song
-    play() {
-        for(var i = 0; i < this.measures.length; i++) {
-            this.measures[i].playSong();
+    play(index) {
+        if(this.measures.length == 0) {
+            return;
+        }
+
+        if(index == (this.measures.length - 1)) {
+            this.measures[index].playSong();
+        } else {
+            this.measures[index].playSong();
+            setTimeout(() => { this.play(index + 1); }, 1000);
         }
     }
 
     //Returns the number of measures
     getMeasureCount() {
-        return this.measureCount;
+        return this.measures.length;
     }
 }
-
 
 const bar = new Bar();
 
@@ -141,7 +161,7 @@ function newMeasure() {
 }
 
 function playAll() {
-    bar.play();
+    bar.play(0);
 }
 
 // Close the dropdown if the user clicks outside of it

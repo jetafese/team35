@@ -11,6 +11,11 @@ body {
     padding: 0px;
 }
 
+.drawingCanvas {
+    border: 1px solid black;
+    width:100%;
+    height:80%;
+}
 .grid-item {
     background-color: #EF719E;
     border: 0px;
@@ -84,4 +89,16 @@ body {
     font-size: 7vw;
     color: black;
     font-family:'Gloria Hallelujah', cursive;
+}
+
+.songLabel {
+    background-color:ghostwhite;
+    border:none;
+    border-radius: 25px;
+    font-size: 1.5vw;
+    color: black;
+    font-family:'Gloria Hallelujah', cursive;
+    position:absolute;
+    bottom:0;
+    right:0;
 }
