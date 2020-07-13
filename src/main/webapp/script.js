@@ -48,16 +48,88 @@ class Measure {
         buttonDrop.onclick = this.showDropMenu;
         this.button = buttonDrop;
 
-        //Create the links
-        var Piano_A = document.createElement("a");
-        Piano_A.innerText = "Piano A";
-        Piano_A.href="#";
-        Piano_A.onclick = this.pianoA;
 
-        var Piano_B = document.createElement("a");
-        Piano_B.innerText = "Piano B";
-        Piano_B.href="#";
-        Piano_B.onclick = this.pianoB;
+        // Sound Options Drop Down Creation: [from free mp3 downloaders online]
+            
+        // Option 1: Piano Dramatic   
+        var sound_option_1 = document.createElement("b");
+        sound_option_1.innerText = "option 1";
+        sound_option_1.href="#";
+
+        // creating audio controls to bind to this sound option 
+        var sound_1      = document.createElement('audio');
+        sound_1.id       = 'piano_drama_sound';
+        sound_1.controls = 'controls';
+        sound_1.src      = 'sounds/piano_dramatic.mp3';
+        sound_1.type     = 'audio/mpeg';
+        sound_option_1.appendChild(sound_1);
+
+        // creating onlick connection to send through the corresponding song 
+        sound_option_1.onclick = this.pianoA(sound_1);
+
+        // Option 2: Piano_A.wav   
+        var sound_option_2 = document.createElement("b");
+        sound_option_2.innerText = "option 2";
+        sound_option_2.href="#";
+
+        // creating audio controls to bind to this sound option 
+        var sound_2      = document.createElement('audio');
+        sound_2.id       = 'piano_a_wav';
+        sound_2.controls = 'controls';
+        sound_2.src      = 'sounds/Piano_A.wav';
+        sound_2.type     = 'audio/wav';
+        sound_option_2.appendChild(sound_2);
+
+        // creating onlick connection to send through the corresponding song 
+        sound_option_2.onclick = this.pianoA(sound_2);
+
+        // Option 3: guitar_riff.mp3   
+        var sound_option_3 = document.createElement("b");
+        sound_option_3.innerText = "option 3";
+        sound_option_3.href="#";
+
+        // creating audio controls to bind to this sound option 
+        var sound_3      = document.createElement('audio');
+        sound_3.id       = 'guitar_riff';
+        sound_3.controls = 'controls';
+        sound_3.src      = 'sounds/guitar_riff.mp3';
+        sound_3.type     = 'audio/mp3';
+        sound_option_3.appendChild(sound_3);
+
+        // creating onlick connection to send through the corresponding song 
+        sound_option_3.onclick = this.pianoA(sound_3);
+
+        // Option 4: drums_1.mp3   
+        var sound_option_4 = document.createElement("b");
+        sound_option_4.innerText = "option 4";
+        sound_option_4.href="#";
+
+        // creating audio controls to bind to this sound option 
+        var sound_4      = document.createElement('audio');
+        sound_4.id       = 'drums_1';
+        sound_4.controls = 'controls';
+        sound_4.src      = 'sounds/drums_1.mp3';
+        sound_4.type     = 'audio/mp3';
+        sound_option_4.appendChild(sound_4);
+
+        // creating onlick connection to send through the corresponding song 
+        sound_option_4.onclick = this.pianoA(sound_4);
+
+       // Option 5: drums_2.mp3   
+        var sound_option_5 = document.createElement("b");
+        sound_option_5.innerText = "option 5";
+        sound_option_5.href="#";
+
+        // creating audio controls to bind to this sound option 
+        var sound_5      = document.createElement('audio');
+        sound_5.id       = 'drums_2';
+        sound_5.controls = 'controls';
+        sound_5.src      = 'sounds/drums_2.mp3';
+        sound_5.type     = 'audio/mp3';
+        sound_option_5.appendChild(sound_5);
+
+        // creating onlick connection to send through the corresponding song 
+        sound_option_5.onclick = this.pianoA(sound_5);
 
         //Create music button
         var buttonMusic = document.createElement("BUTTON");
@@ -70,13 +142,20 @@ class Measure {
         parentDiv.appendChild(dropDownDiv);
         dropDownDiv.appendChild(buttonDrop);
         dropDownDiv.appendChild(innerDrop);
-        innerDrop.appendChild(Piano_A);
-        innerDrop.appendChild(Piano_B);
+
+        // adding the sound options we created to the drop down
+        innerDrop.appendChild(sound_option_1);
+        innerDrop.appendChild(sound_option_2);
+        innerDrop.appendChild(sound_option_3);
+        innerDrop.appendChild(sound_option_4);
+        innerDrop.appendChild(sound_option_5);
         dropDownDiv.appendChild(buttonMusic);
 
     }
 
-    pianoA() {
+    // TODO: edit the pianoA and pianoB method to set the sound chosen as the sound for current note 
+    pianoA(file) {
+        console.log(file);
         var newSong = new Note("Piano_A.wav");
         this.song = newSong;
     }
