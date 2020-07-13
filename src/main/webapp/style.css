@@ -17,3 +17,9 @@
     display: block;
     text-align: center;
 }
+
+#clef {
+    float: left;
+    width: 15vw;
+    height: 20vw;
+}
