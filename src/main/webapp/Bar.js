@@ -5,20 +5,32 @@ of measures (which will be a song unit). Then, you can
 add measures in sequence and play the full song.
 */
 
-class Bar {
+export default class Bar {
     constructor() {
-        this.measures = []
+        this.measures = [];
     }
 
     //Appends a new measure to the end of the list
     addMeasure(newMeasure) {
-        this.measures.push(newMeasure)
+        this.measures.push(newMeasure);
     }
 
     //Plays the full song
-    play() {
-        for(i = 0; i < this.measures.length; i++) {
-            this.measures[i].play();
+    play(index) {
+        if(this.measures.length == 0) {
+            return;
         }
+
+        if(index == (this.measures.length - 1)) {
+            this.measures[index].playSong();
+        } else {
+            this.measures[index].playSong();
+            setTimeout(() => { this.play(index + 1); }, 1000);
+        }
+    }
+
+    //Returns the number of measures
+    getMeasureCount() {
+        return this.measures.length;
     }
 }

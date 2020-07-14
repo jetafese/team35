@@ -5,12 +5,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
     <title>Beats 35</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <script src="script.js" type="module"></script>
   </head>
   <body>
     <div id="content">
       <p class="main-title">BEATS35
-      <button class="simpleButton" onclick="playAll();"> > </button>
+      <button class="simpleButton" id="playAll"> > </button>
       </p>
     </div>
     <img id="clef" src="images/clef.png"></img>
@@ -23,13 +23,13 @@
             <option value="3">Measure 4</option>
             <option value="4" selected>All measures</option>
         </select>
-        <button onclick="clearAll()"> Clear </button>
+        <button id="clearAll"> Clear </button>
     </div>
 
     <div id="grid-container">  
     </div>
 
-    <button class="simpleButton" onclick="newMeasure();">+</button>
+    <button class="simpleButton" id="newMeasure">+</button>
 
   </body>
 </html> 

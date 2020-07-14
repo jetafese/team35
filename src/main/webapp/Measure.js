@@ -17,56 +17,91 @@ and you can play this note.
 
 */
 
-class Measure {
-    constructor(parentDiv) {
+import Note from '/Note.js';
+
+export default class Measure {
+    constructor(parentDiv, curId) {
+        //Initate note as null
+        var curNote = new Note("undefined");
+        this.note = curNote;
+
         //Create big dropdown div
         var dropDownDiv = document.createElement("div");
         dropDownDiv.classList.add("dropdown");
+        dropDownDiv.id = curId + "dropDownDiv";
         this.outerDrop = dropDownDiv;
-
-        //Create button
-        var buttonDrop = document.createElement("BUTTON");
-        buttonDrop.classList.add("dropButton");
-        buttonDrop.innerText = "Notes"; 
-        buttonDrop.onclick = this.showDropMenu;
-        this.button = buttonDrop;
 
         //Create inner dropdown
         var innerDrop = document.createElement("div");
         innerDrop.classList.add("dropdown-content");
-        this.innerDrop = innerDrop;
+        innerDrop.id = curId + "innerDrop";
+        this.innerDropMenu = innerDrop;
+
+        //Create button
+        var buttonDrop = document.createElement("BUTTON");
+        buttonDrop.classList.add("dropButton");
+        buttonDrop.id = curId + "buttonDrop";
+        buttonDrop.innerHTML = "&equiv;";
+        buttonDrop.onclick = () => {this.showDropMenu()};
+        this.button = buttonDrop;
 
         //Create the links
-        var aOne = document.createElement('a');
-        aOne.title = "One";
-        aOne.href="#";
-        aOne.onclick = this.alertOne;
+        var Piano_A = document.createElement("a");
+        Piano_A.innerText = "Piano A";
+        Piano_A.href="#";
+        Piano_A.onclick = () => {this.assignNote("Piano_A.wav")};
+        Piano_A.onmouseover = () => {this.hoverPlay("Piano_A.wav")};
 
-        var aTwo = document.createElement('a');
-        aTwo.title = "Two";
-        aTwo.href="#";
-        aTwo.onclick = this.alertTwo;
+        var Piano_B = document.createElement("a");
+        Piano_B.innerText = "Piano B";
+        Piano_B.href="#";
+        Piano_B.onclick = () => {this.assignNote("Piano_B.wav")};
+        Piano_B.onmouseover = () => {this.hoverPlay("Piano_B.wav")};
 
-        innerDrop.appendChild(aTwo);
-        innerDrop.appendChild(aOne);
-        dropDownDiv.appendChild(innerDrop);
-        dropDownDiv.appendChild(buttonDrop);
+        //Create music button
+        var buttonMusic = document.createElement("BUTTON");
+        buttonMusic.classList.add("musicButton");
+        buttonMusic.id = curId + "buttonMusic";
+        buttonMusic.innerText = ">";
+        buttonMusic.onclick = () => {this.playSong()};
+        this.buttonMusic = buttonMusic;
+
+        //Create song label
+        var songLabel = document.createElement("BUTTON");
+        songLabel.classList.add("songLabel");
+        songLabel.innerText = 'Song: ' + this.note.getName();
+        this.songNameLabel = songLabel;
+
         parentDiv.appendChild(dropDownDiv);
+        dropDownDiv.appendChild(buttonDrop);
+        dropDownDiv.appendChild(innerDrop);
+        innerDrop.appendChild(Piano_A);
+        innerDrop.appendChild(Piano_B);
+        dropDownDiv.appendChild(buttonMusic);
+        dropDownDiv.appendChild(songLabel);
+        
+
     }
 
-    alertTwo() {
-        alert("Two");
+    hoverPlay(songLink) {
+        new Audio(songLink).play();
     }
 
-    alertOne() {
-        alert("One!!");
+    assignNote(noteLink) {
+        var newSong = new Note(noteLink);
+        this.note = newSong;
+        this.songNameLabel.innerText =  'Song: ' + newSong.getName();
     }
+
     showDropMenu() {
-        this.innerDrop.classList.toggle("show");
+        this.innerDropMenu.classList.toggle("show");
     }
 
-    //Plays the measure's note
-    play() {
-        this.note.play()
+    playSong() {
+        if(this.note == null) {
+            alert("No song defined");
+            return;
+        }
+        this.note.play();
     }
 }
