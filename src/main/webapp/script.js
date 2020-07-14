@@ -15,7 +15,6 @@
 import Bar from '/Bar.js';
 import Measure from '/Measure.js';
 
-document.addEventListener("DOMContentLoaded", ready);
 document.getElementById("playAll").addEventListener("click", playAll);
 document.getElementById("clearAll").addEventListener("click", clearAll);
 document.getElementById("newMeasure").addEventListener("click", newMeasure);

@@ -18,6 +18,8 @@ and you can play this note.
 */
 
 import Note from '/Note.js';
+import Canvas from '/Canvas.js';
+
 
 export default class Measure {
     constructor(parentDiv, curId) {
@@ -72,7 +74,11 @@ export default class Measure {
         songLabel.innerText = 'Song: ' + this.note.getName();
         this.songNameLabel = songLabel;
 
+        // create canvas 
+        var canvas = new Canvas(parentDiv, curId);
+
         parentDiv.appendChild(dropDownDiv);
+        
         dropDownDiv.appendChild(buttonDrop);
         dropDownDiv.appendChild(innerDrop);
         innerDrop.appendChild(Piano_A);
@@ -104,4 +110,5 @@ export default class Measure {
         }
         this.note.play();
     }
+
 }
