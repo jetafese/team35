@@ -2,14 +2,16 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
     <title>Beats 35</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
   <body>
     <div id="content">
-      <h1>Welcome to Beats 35!</h1>
-      <p> Not just music but shapes too!</p>
+      <p class="main-title">BEATS35
+      <button class="simpleButton" onclick="playAll();"> > </button>
+      </p>
     </div>
     <img id="clef" src="images/clef.png"></img>
     <canvas id="paint"></canvas>
@@ -23,5 +25,11 @@
         </select>
         <button onclick="clearAll()"> Clear </button>
     </div>
+
+    <div id="grid-container">  
+    </div>
+
+    <button class="simpleButton" onclick="newMeasure();">+</button>
+
   </body>
 </html> 
