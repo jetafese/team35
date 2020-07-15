@@ -75,9 +75,10 @@ export default class Measure {
         this.songNameLabel = songLabel;
 
         // create canvas 
-        var canvas = new Canvas(parentDiv, curId);
+        var canvasObj = new Canvas(curId);
 
         parentDiv.appendChild(dropDownDiv);
+        parentDiv.appendChild(canvasObj.canvas);
         
         dropDownDiv.appendChild(buttonDrop);
         dropDownDiv.appendChild(innerDrop);

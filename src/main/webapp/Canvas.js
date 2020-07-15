@@ -1,20 +1,20 @@
 export default class Canvas {
-    constructor(parentDiv, measureParentID){
-        var x = document.createElement("CANVAS");
-        x.id = "paint";
-        parentDiv.appendChild(x);
-        document.addEventListener("DOMContentLoaded", this.ready());
+    constructor(measureParentID){
+        const canvas = document.createElement("canvas");
+        canvas.classList.add("paint");
+        canvas.id = measureParentID + "canvas";
 
+        document.addEventListener("DOMContentLoaded", this.ready(canvas));
+        this.canvas = canvas;
     }
     
     // Canvas related code
-    ready() {
-        const canvas = document.getElementById('paint');
+    ready(canvas) {
         const ctx = canvas.getContext('2d');
 
         // dimensions of music staff
-        canvas.width = 2000;
-        canvas.height = 400;
+        canvas.width = 200;
+        canvas.height = 200;
 
         // settings for drawing
         ctx.lineJoin = 'round';
@@ -25,10 +25,10 @@ export default class Canvas {
         var mouse = {x: 0, y: 0};
 
         // Draws the music staff's 3 lines and bars (dividing each measure)
-        drawLines(ctx, canvas);
+        this.drawLines(ctx, canvas);
 
         // Adds event listeners for the user's drawing (drawing is impossible without this)
-        addListeners(canvas, ctx, mouse);
+        this.addListeners(canvas, ctx, mouse);
     }
 
     drawLines(ctx, canvas){
@@ -39,13 +39,6 @@ export default class Canvas {
         for (var i = dividor; i < canvas.height; i += dividor){
             ctx.moveTo(0, i);
             ctx.lineTo(canvas.width, i);
-        }
-
-        // Draw bars
-        dividor = canvas.width / 4;
-        for (var j = dividor; j < canvas.width; j += dividor){
-            ctx.moveTo(j, 0);
-            ctx.lineTo(j, canvas.height);
         }
 
         ctx.stroke();

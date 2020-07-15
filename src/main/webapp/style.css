@@ -81,7 +81,7 @@ body {
     background-color: rgb(241, 179, 54);
 }
 
-#paint {
+.paint {
     border: 3px solid black;
     background: #cccccc;
     margin-left: auto;
