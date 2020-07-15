@@ -16,7 +16,6 @@ import Bar from '/Bar.js';
 import Measure from '/Measure.js';
 
 document.getElementById("playAll").addEventListener("click", playAll);
-document.getElementById("clearAll").addEventListener("click", clearAll);
 document.getElementById("newMeasure").addEventListener("click", newMeasure);
 
 // Canvas related code
@@ -86,22 +85,6 @@ function addListeners(canvas, ctx, mouse) {
         ctx.lineTo(mouse.x, mouse.y);
         ctx.stroke();
     };
-}
-
-function clearAll(){
-	const canvas = document.getElementById('paint');
-    const ctx = canvas.getContext('2d');
-    const measure = document.getElementById("measures").value;
-
-    // Mathematical formulas for getting the x-coords of measure 1, 2, 3, 4, or entire staff
-    const x_0 = (measure == 4) ? 0 : canvas.width/4 * measure;
-    const x_1 = (measure == 4) ? canvas.width : canvas.width/4;
-    
-    // Clears the measure(s) chosen by the user
-    ctx.clearRect(x_0, 0, x_1, canvas.height);
-    
-    // Re-draw staff lines and bars
-    drawLines(ctx, canvas);
 }
 
 // Measures, Notes, Bars
