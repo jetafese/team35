@@ -41,19 +41,48 @@ export default class Measure {
         buttonDrop.onclick = () => {this.showDropMenu()};
         this.button = buttonDrop;
 
-        //Create the links
-        var Piano_A = document.createElement("a");
-        Piano_A.innerText = "Piano A";
-        Piano_A.href="#";
-        Piano_A.onclick = () => {this.assignNote("Piano_A.wav")};
-        Piano_A.onmouseover = () => {this.hoverPlay("Piano_A.wav")};
+        // sound option 1 : piano A 
+        var sound_option_1 = document.createElement("a");
+        sound_option_1.innerText = "Piano A";
+        sound_option_1.href="#";
+        sound_option_1.onclick = () => {this.assignNote('./sound_options/Piano_A.wav')};
+        sound_option_1.onmouseover = () => {this.hoverPlay('./sound_options/Piano_A.wav')};
+        
+        // sound option 2 : piano B
+        var sound_option_2 = document.createElement("a");
+        sound_option_2.innerText = "Piano B";
+        sound_option_2.href="#";
+        sound_option_2.onclick = () => {this.assignNote('./sound_options/Piano_B.wav')};
+        sound_option_2.onmouseover = () => {this.hoverPlay('./sound_options/Piano_B.wav')};
 
-        var Piano_B = document.createElement("a");
-        Piano_B.innerText = "Piano B";
-        Piano_B.href="#";
-        Piano_B.onclick = () => {this.assignNote("Piano_B.wav")};
-        Piano_B.onmouseover = () => {this.hoverPlay("Piano_B.wav")};
+        // sound option 3: funky guitar 
+        var sound_option_3 = document.createElement("a");
+        sound_option_3.innerText = "Guitar - Funky";
+        sound_option_3.href="#";
+        sound_option_3.onclick = () => {this.assignNote('./sound_options/funk_guitar.mp3')};
+        sound_option_3.onmouseover = () => {this.hoverPlay('./sound_options/funk_guitar.mp3')};
 
+        // sound option 4: dramatic piano 
+        var sound_option_4 = document.createElement("a");
+        sound_option_4.innerText = "Piano - Dramatic";
+        sound_option_4.href="#";
+        sound_option_4.onclick = () => {this.assignNote('./sound_options/dramatic_piano.mp3')};
+        sound_option_4.onmouseover = () => {this.hoverPlay('./sound_options/dramatic_piano.mp3')};
+       
+        // sound option 5: rock drums
+        var sound_option_5 = document.createElement("a");
+        sound_option_5.innerText = "Drums - Rockstyle";
+        sound_option_5.href="#";
+        sound_option_5.onclick = () => {this.assignNote('./sound_options/rock_drums.mp3')};
+        sound_option_5.onmouseover = () => {this.hoverPlay('./sound_options/rock_drums.mp3')};
+
+         // sound option 6:
+        var sound_option_6 = document.createElement("a");
+        sound_option_6.innerText = "Drums - Electronic";
+        sound_option_6.href="#";
+        sound_option_6.onclick = () => {this.assignNote('./sound_options/drums.mp3')};
+        sound_option_6.onmouseover = () => {this.hoverPlay('./sound_options/drums.mp3')};
+       
         //Create music button
         var buttonMusic = document.createElement("BUTTON");
         buttonMusic.classList.add("musicButton");
@@ -73,8 +102,13 @@ export default class Measure {
         
         parentDiv.appendChild(buttonDrop);
         parentDiv.appendChild(innerDrop);
-        innerDrop.appendChild(Piano_A);
-        innerDrop.appendChild(Piano_B);
+        innerDrop.appendChild(sound_option_1);
+        innerDrop.appendChild(sound_option_2);
+        innerDrop.appendChild(sound_option_3);
+        innerDrop.appendChild(sound_option_4);
+        innerDrop.appendChild(sound_option_5);
+        innerDrop.appendChild(sound_option_6);
+
 
         // maintain play measure music button 
         parentDiv.appendChild(buttonMusic);
@@ -94,7 +128,9 @@ export default class Measure {
     assignNote(noteLink) {
         var newSong = new Note(noteLink);
         this.note = newSong;
-        this.songNameLabel.innerText =  'Song: ' + newSong.getName();
+        var songPathWithName = newSong.getName();
+        var removingSongPath = songPathWithName.substring(16);
+        this.songNameLabel.innerText =  'Song: ' + removingSongPath;
     }
 
     showDropMenu() {
@@ -107,6 +143,7 @@ export default class Measure {
             return;
         }
         this.note.play();
+
     }
 
 }
