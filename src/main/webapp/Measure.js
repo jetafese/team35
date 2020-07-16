@@ -41,48 +41,6 @@ export default class Measure {
         buttonDrop.onclick = () => {this.showDropMenu()};
         this.button = buttonDrop;
 
-        // sound option 1 : piano A 
-        var sound_option_1 = document.createElement("a");
-        sound_option_1.innerText = "Piano A";
-        sound_option_1.href="#";
-        sound_option_1.onclick = () => {this.assignNote('./sound_options/Piano_A.wav')};
-        sound_option_1.onmouseover = () => {this.hoverPlay('./sound_options/Piano_A.wav')};
-        
-        // sound option 2 : piano B
-        var sound_option_2 = document.createElement("a");
-        sound_option_2.innerText = "Piano B";
-        sound_option_2.href="#";
-        sound_option_2.onclick = () => {this.assignNote('./sound_options/Piano_B.wav')};
-        sound_option_2.onmouseover = () => {this.hoverPlay('./sound_options/Piano_B.wav')};
-
-        // sound option 3: funky guitar 
-        var sound_option_3 = document.createElement("a");
-        sound_option_3.innerText = "Guitar - Funky";
-        sound_option_3.href="#";
-        sound_option_3.onclick = () => {this.assignNote('./sound_options/funk_guitar.mp3')};
-        sound_option_3.onmouseover = () => {this.hoverPlay('./sound_options/funk_guitar.mp3')};
-
-        // sound option 4: dramatic piano 
-        var sound_option_4 = document.createElement("a");
-        sound_option_4.innerText = "Piano - Dramatic";
-        sound_option_4.href="#";
-        sound_option_4.onclick = () => {this.assignNote('./sound_options/dramatic_piano.mp3')};
-        sound_option_4.onmouseover = () => {this.hoverPlay('./sound_options/dramatic_piano.mp3')};
-       
-        // sound option 5: rock drums
-        var sound_option_5 = document.createElement("a");
-        sound_option_5.innerText = "Drums - Rockstyle";
-        sound_option_5.href="#";
-        sound_option_5.onclick = () => {this.assignNote('./sound_options/rock_drums.mp3')};
-        sound_option_5.onmouseover = () => {this.hoverPlay('./sound_options/rock_drums.mp3')};
-
-         // sound option 6:
-        var sound_option_6 = document.createElement("a");
-        sound_option_6.innerText = "Drums - Electronic";
-        sound_option_6.href="#";
-        sound_option_6.onclick = () => {this.assignNote('./sound_options/drums.mp3')};
-        sound_option_6.onmouseover = () => {this.hoverPlay('./sound_options/drums.mp3')};
-       
         //Create music button
         var buttonMusic = document.createElement("BUTTON");
         buttonMusic.classList.add("musicButton");
@@ -102,12 +60,12 @@ export default class Measure {
         
         parentDiv.appendChild(buttonDrop);
         parentDiv.appendChild(innerDrop);
-        innerDrop.appendChild(sound_option_1);
-        innerDrop.appendChild(sound_option_2);
-        innerDrop.appendChild(sound_option_3);
-        innerDrop.appendChild(sound_option_4);
-        innerDrop.appendChild(sound_option_5);
-        innerDrop.appendChild(sound_option_6);
+        innerDrop.appendChild(this.addSong("Piano A", './sound_options/Piano_A.wav'));
+        innerDrop.appendChild(this.addSong("Piano A", './sound_options/Piano_B.wav'));
+        innerDrop.appendChild(this.addSong("Guitar - Funky", './sound_options/funk_guitar.mp3'));
+        innerDrop.appendChild(this.addSong("Piano - Dramatic", './sound_options/dramatic_piano.mp3'));
+        innerDrop.appendChild(this.addSong("Drums - Rockstyle", './sound_options/rock_drums.mp3'));
+        innerDrop.appendChild(this.addSong("Drums - Electronic", './sound_options/drums.mp3'));
 
 
         // maintain play measure music button 
@@ -143,7 +101,16 @@ export default class Measure {
             return;
         }
         this.note.play();
+    }
 
+    addSong(name, source) {
+        var sound_option = document.createElement("a");
+        sound_option.innerText = name;
+        sound_option.href="#";
+        sound_option.onclick = () => {this.assignNote(source)};
+        sound_option.onmouseover = () => {this.hoverPlay(source)};
+
+        return sound_option;
     }
 
 }
