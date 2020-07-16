@@ -26,6 +26,7 @@ export default class Measure {
         //Initate note as null
         var curNote = new Note("undefined");
         this.note = curNote;
+        this.currentHoverSong = []; 
 
         //Create inner dropdown
         var innerDrop = document.createElement("div");
@@ -61,7 +62,7 @@ export default class Measure {
         parentDiv.appendChild(buttonDrop);
         parentDiv.appendChild(innerDrop);
         innerDrop.appendChild(this.addSong("Piano A", './sound_options/Piano_A.wav'));
-        innerDrop.appendChild(this.addSong("Piano A", './sound_options/Piano_B.wav'));
+        innerDrop.appendChild(this.addSong("Piano B", './sound_options/Piano_B.wav'));
         innerDrop.appendChild(this.addSong("Guitar - Funky", './sound_options/funk_guitar.mp3'));
         innerDrop.appendChild(this.addSong("Piano - Dramatic", './sound_options/dramatic_piano.mp3'));
         innerDrop.appendChild(this.addSong("Drums - Rockstyle", './sound_options/rock_drums.mp3'));
@@ -80,7 +81,12 @@ export default class Measure {
     }
 
     hoverPlay(songLink) {
-        new Audio(songLink).play();
+        let song = new Audio(songLink);
+        if(this.currentHoverSong.length != 0) {
+            this.currentHoverSong.pop().pause();
+        }
+        this.currentHoverSong.push(song);
+        song.play();
     }
 
     assignNote(noteLink) {
