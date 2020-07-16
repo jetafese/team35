@@ -107,6 +107,7 @@ export default class Measure {
             return;
         }
         this.note.play();
+        //this.note.onended = afterEnd(index);
     }
 
     addSong(name, source) {

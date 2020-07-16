@@ -20,12 +20,15 @@ export default class Bar {
         if(this.measures.length == 0) {
             return;
         }
-
+        console.log(index);
         if(index == (this.measures.length - 1)) {
+            console.log("Hahaha");
             this.measures[index].playSong();
         } else {
+            console.log("lolol");
             this.measures[index].playSong();
-            setTimeout(() => { this.play(index + 1); }, 1000);
+            this.measures[index].note.note.onended = function(){console.log('ended'); this.play(index + 1); };
+             
         }
     }
 
