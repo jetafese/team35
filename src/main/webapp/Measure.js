@@ -27,12 +27,6 @@ export default class Measure {
         var curNote = new Note("undefined");
         this.note = curNote;
 
-        //Create big dropdown div
-        var dropDownDiv = document.createElement("div");
-        dropDownDiv.classList.add("dropdown");
-        dropDownDiv.id = curId + "dropDownDiv";
-        this.outerDrop = dropDownDiv;
-
         //Create inner dropdown
         var innerDrop = document.createElement("div");
         innerDrop.classList.add("dropdown-content");
@@ -76,16 +70,20 @@ export default class Measure {
 
         // create canvas 
         var canvasObj = new Canvas(curId);
-
-        parentDiv.appendChild(dropDownDiv);
-        parentDiv.appendChild(canvasObj.canvas);
         
-        dropDownDiv.appendChild(buttonDrop);
-        dropDownDiv.appendChild(innerDrop);
+        parentDiv.appendChild(buttonDrop);
+        parentDiv.appendChild(innerDrop);
         innerDrop.appendChild(Piano_A);
         innerDrop.appendChild(Piano_B);
-        dropDownDiv.appendChild(buttonMusic);
-        dropDownDiv.appendChild(songLabel);
+
+        // maintain play measure music button 
+        parentDiv.appendChild(buttonMusic);
+
+        // add canvas in the center of the page
+        parentDiv.appendChild(canvasObj.canvas);
+
+        // song label to be at the bottom of page 
+        parentDiv.appendChild(songLabel);
 
     }
 
