@@ -86,7 +86,6 @@ export default class Measure {
         innerDrop.appendChild(Piano_B);
         dropDownDiv.appendChild(buttonMusic);
         dropDownDiv.appendChild(songLabel);
-        
 
     }
 

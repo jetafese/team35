@@ -4,7 +4,7 @@ export default class Canvas {
         canvas.classList.add("paint");
         canvas.id = measureParentID + "canvas";
 
-        document.addEventListener("DOMContentLoaded", this.ready(canvas));
+        this.ready(canvas);
         this.canvas = canvas;
     }
     
@@ -12,9 +12,8 @@ export default class Canvas {
     ready(canvas) {
         const ctx = canvas.getContext('2d');
 
-        // dimensions of music staff
-        canvas.width = 200;
-        canvas.height = 200;
+        canvas.width = 400;
+        canvas.height = 400;
 
         // settings for drawing
         ctx.lineJoin = 'round';
