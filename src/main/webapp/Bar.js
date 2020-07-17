@@ -20,15 +20,15 @@ export default class Bar {
         if(this.measures.length == 0) {
             return;
         }
-        console.log(index);
+        // this helps make recursive calls later
+        let self = this;
+
         if(index == (this.measures.length - 1)) {
-            console.log("Hahaha");
             this.measures[index].playSong();
         } else {
-            console.log("lolol");
-            this.measures[index].playSong();
-            this.measures[index].note.note.onended = function(){console.log('ended'); this.play(index + 1); };
-             
+            this.measures[index].playSong().onended = function() {
+                self.play(index + 1);
+            }
         }
     }
 

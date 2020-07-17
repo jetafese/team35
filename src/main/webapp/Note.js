@@ -29,6 +29,10 @@ export default class Note {
         this.note.pause();
     }
 
+    getNote() {
+        return this.note;
+    }
+
     getName() {
         return this.song;
     }

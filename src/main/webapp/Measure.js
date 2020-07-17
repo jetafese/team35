@@ -107,7 +107,8 @@ export default class Measure {
             return;
         }
         this.note.play();
-        //this.note.onended = afterEnd(index);
+        
+        return this.note.getNote();
     }
 
     addSong(name, source) {
