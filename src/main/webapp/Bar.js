@@ -26,7 +26,7 @@ export default class Bar {
         if(index == (this.measures.length - 1)) {
             this.measures[index].playSong();
         } else {
-            this.measures[index].playSong()
+            this.measures[index].playSong();
             this.measures[index].getCurNote().onended = function() {
                 self.play(index + 1);
             }
