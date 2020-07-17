@@ -61,12 +61,13 @@ export default class Measure {
         
         parentDiv.appendChild(buttonDrop);
         parentDiv.appendChild(innerDrop);
-        innerDrop.appendChild(this.addSong("Piano A", './sound_options/Piano_A.wav'));
-        innerDrop.appendChild(this.addSong("Piano B", './sound_options/Piano_B.wav'));
-        innerDrop.appendChild(this.addSong("Guitar - Funky", './sound_options/funk_guitar.mp3'));
-        innerDrop.appendChild(this.addSong("Piano - Dramatic", './sound_options/dramatic_piano.mp3'));
-        innerDrop.appendChild(this.addSong("Drums - Rockstyle", './sound_options/rock_drums.mp3'));
-        innerDrop.appendChild(this.addSong("Drums - Electronic", './sound_options/drums.mp3'));
+        innerDrop.appendChild(this.addSong("Piano A3", './sound_options/Piano_A3.mp3'));
+        innerDrop.appendChild(this.addSong("Piano B3", './sound_options/Piano_B3.mp3'));
+        innerDrop.appendChild(this.addSong("Piano C4", './sound_options/Piano_C4.mp3'));
+        innerDrop.appendChild(this.addSong("Piano D4", './sound_options/Piano_D4.mp3'));
+        innerDrop.appendChild(this.addSong("Piano E4", './sound_options/Piano_E4.mp3'));
+        innerDrop.appendChild(this.addSong("Piano F4", './sound_options/Piano_F4.mp3'));
+        innerDrop.appendChild(this.addSong("Piano G4", './sound_options/Piano_G4.mp3'));
 
 
         // maintain play measure music button 
