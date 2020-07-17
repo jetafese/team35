@@ -103,10 +103,6 @@ export default class Measure {
     }
 
     playSong() {
-        if(this.note == null) {
-            alert("No song defined");
-            return;
-        }
         this.note.play();
     }
 

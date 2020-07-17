@@ -15,18 +15,17 @@ export default class Note {
 
     play() {
         if(this.song == "undefined") {
-            alert("Song undefined");
+            // alert("No song defined");
+            console.log("No song defined");  // might be better to avoid alerts in the case that there are multiple undefined songs
             return;
         }
         this.note.play();
     }
 
     pause() {
-        if(this.song == "undefined") {
-            alert("Song undefined");
-            return;
+        if(this.song != "undefined") {
+            this.note.pause();
         }
-        this.note.pause();
     }
 
     getNote() {
