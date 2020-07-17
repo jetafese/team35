@@ -17,15 +17,16 @@ export default class Bar {
 
     //Plays the full song
     play(index) {
-        if(this.measures.length == 0) {
+        if(this.measures.length == 0 || index >= this.measures.length) {
             return;
         }
-
-        if(index == (this.measures.length - 1)) {
-            this.measures[index].playSong();
-        } else {
-            this.measures[index].playSong();
-            setTimeout(() => { this.play(index + 1); }, 1000);
+        // this helps make recursive calls later
+        let self = this;
+        let curSong = this.measures[index];
+        curSong.playSong();
+        
+        if(index != (this.measures.length - 1)) {
+            curSong.getCurNote() != null ? curSong.getCurNote().onended = function() { self.play(index + 1); } : self.play(index + 1);
         }
     }
 

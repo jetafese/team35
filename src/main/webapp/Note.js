@@ -6,14 +6,30 @@ as well as an 'undefined' initial state
 export default class Note {
     constructor(songPath) {
         this.song = songPath;
+        this.note;
+
+        if(this.song != "undefined") {
+            this.note = new Audio(this.song);
+        }
     }
 
     play() {
         if(this.song == "undefined") {
-            alert("Song undefined");
+            // alert("No song defined");
+            console.log("No song defined");  // might be better to avoid alerts in the case that there are multiple undefined songs
             return;
         }
-        new Audio(this.song).play();
+        this.note.play();
+    }
+
+    pause() {
+        if(this.song != "undefined") {
+            this.note.pause();
+        }
+    }
+
+    getNote() {
+        return this.note;
     }
 
     getName() {

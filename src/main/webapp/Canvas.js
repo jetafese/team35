@@ -1,3 +1,7 @@
+/*
+This class represents a Canvas that allows for a drawable measure
+*/
+
 export default class Canvas {
     constructor(measureParentID){
         const canvas = document.createElement("canvas");
