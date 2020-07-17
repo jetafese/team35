@@ -108,7 +108,9 @@ export default class Measure {
             return;
         }
         this.note.play();
-        
+    }
+
+    getCurNote() {
         return this.note.getNote();
     }
 
