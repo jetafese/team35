@@ -4,12 +4,15 @@ as well as an 'undefined' initial state
 */
 
 export default class Note {
-    constructor(songPath) {
+    constructor(songPath, canvas = null) {
         this.song = songPath;
         this.note;
 
         if(this.song != "undefined") {
             this.note = new Audio(this.song);
+            if (canvas != null){
+                canvas.drawNote(this.song);
+            }
         }
     }
 
