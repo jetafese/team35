@@ -39,7 +39,11 @@ export default class Canvas {
 
         // Draw lines
         var dividor = canvas.height / 4;
-        for (var i = dividor; i < canvas.height; i += dividor){
+        var minHeight = dividor;
+        var maxHeight = dividor * 3;
+        var interval = dividor / 2;
+
+        for (var i = minHeight; i <= maxHeight; i += interval){
             ctx.moveTo(0, i);
             ctx.lineTo(canvas.width, i);
         }
@@ -70,5 +74,56 @@ export default class Canvas {
             ctx.lineTo(mouse.x, mouse.y);
             ctx.stroke();
         };
+    }
+    drawNote(songPath){
+        var ctx = this.canvas.getContext("2d");
+
+        // Overwrite canvas by clearing content
+        ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.drawLines(ctx, this.canvas);
+
+        // Get note letter from song path
+        var noteLetter = songPath.match("(?<=Piano_)(.*)(?=4.mp3)")[0];
+
+        // Determine the position of the notehead with respect to the note letter
+        var ellipseY = {
+            "C": 350,
+            "D": 325,
+            "E": 300,
+            "F": 275,
+            "G": 250,
+            "A": 225,
+            "B": 200,
+        };
+
+        // y1 for notehead, y2 for the stem, y3 for the flag
+        var y1 = ellipseY[noteLetter];
+        var y2 = y1 - 105;
+        var y3 = y1 - 55;
+
+        // Draw notehead
+        ctx.beginPath();
+        ctx.ellipse(200, y1, 25, 35, Math.PI / 2, 0, 2 * Math.PI);
+        ctx.fill();
+
+        // Draw stem
+        ctx.beginPath();
+        ctx.rect(220, y2, 15, 100);
+        ctx.fill();
+
+        // Draw flag
+        ctx.beginPath();
+        ctx.arc(225, y3, 50, 0, 3 * Math.PI / 2, 1);
+        ctx.arc(225, y3, 50, 0, 3 * Math.PI / 2, 1);
+        ctx.fill();
+
+        // If middle C, draw horizontal dash between notehead
+        if (noteLetter == "C"){
+            ctx.beginPath();
+            ctx.rect(150, 350, 105, 5);
+            ctx.fill();
+        }
+
+        ctx.stroke();
     }
 }
